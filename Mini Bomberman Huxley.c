@@ -3,29 +3,13 @@
 #include <math.h>
 #include <stdlib.h>
 
+char Z[100][100];
 
 
-int main() 
-{
-    char Z[1000][1000];
-    int tam, B;
-    int i, j, x, y;
-    int c, v, e, d;
-    scanf("%d", &tam);
-    getchar();
-    for(i=0; i<tam; i++)
-    {
-        for(j=0; j<tam; j++)
-        {
-            scanf("%c", &Z[i][j]);
-        }
-        getchar();
-    }
-    scanf("%d", &B);
-    for(i=0; i<B; i++)
-    {
-        scanf("%d%d", &x, &y);
-        if(Z[x][y]=='_')
+void explodir( int x, int y, int tam)
+{	
+    	int c, v, e, d;
+	    if(Z[x][y]=='_')
         {
             if(x+1>tam-1)
             {
@@ -70,7 +54,30 @@ int main()
             {
                 Z[x][d]='_';
             }
-        }    
+        }   
+}
+
+
+int main() 
+{
+    int tam, B;
+    int i, j, x, y;
+    int c, v, e, d;
+    scanf("%d", &tam);
+    getchar();
+    for(i=0; i<tam; i++)
+    {
+        for(j=0; j<tam; j++)
+        {
+            scanf("%c", &Z[i][j]);
+        }
+        getchar();
+    }
+    scanf("%d", &B);
+    for(i=0; i<B; i++)
+    {
+        scanf("%d%d", &x, &y);
+        explodir(x, y, tam);
     }
     for(i=0; i<tam; i++)
     {
