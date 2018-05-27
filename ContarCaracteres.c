@@ -51,7 +51,7 @@ int contar_pares(char X[], char freq[])
         if(p[i] && p[i+1]) par++;
         for(j=i+2; j<f; j+=2)
         {
-            if((p[i]==p[j] && p[i+1]==p[j+1] || p[i]==p[j+1] && p[i+1]==p[j])) par++;
+            if(p[i]==p[j] && p[i+1]==p[j+1]) par++;
             
         }
         if(par>Mpar)
