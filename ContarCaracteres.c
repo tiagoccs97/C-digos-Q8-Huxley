@@ -41,24 +41,24 @@ int contar_pares(char X[], char freq[])
     {
         if(((X[i]>=65 && X[i]<=90) || X[i]>=97 && X[i]<=122) && ((X[i+1]>=65 && X[i+1]<=90) || X[i+1]>=97 && X[i+1]<=122)) 
         {
-            p[f]=X[i]; p[f+1]=X[i+1]; f+=2; i+=2;
+            p[f]=X[i]; p[f+1]=X[i+1]; f+=2; 
         }
-        else i++;
+        i++;
     }
     
-    for(i=f-1; i>=0; i-=2)
+    for(i=0; i<f; i+=2)
     {
-        if(p[i] && p[i-1]) par++;
-        for(j=i-2; j>=0; j-=2)
+        if(p[i] && p[i+1]) par++;
+        for(j=i+2; j<f; j+=2)
         {
-            if((p[i]==p[j] && p[i-1]==p[j-1])) par++;
+            if((p[i]==p[j] && p[i+1]==p[j+1] || p[i]==p[j+1] && p[i+1]==p[j])) par++;
             
         }
         if(par>Mpar)
         {
             Mpar=par;
-            freq[1]=p[i];
-            freq[0]=p[i-1];
+            freq[0]=p[i];
+            freq[1]=p[i+1];
         }
         par=0;
     }
