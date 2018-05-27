@@ -3,6 +3,8 @@
 #include <math.h>
 #include <stdlib.h>
 
+char p[150];
+
 int letras(char X[])
 {
      int i, n=strlen(X);
@@ -36,7 +38,7 @@ void converter(char X[])
 int contar_pares(char X[], char freq[])
 {
     int i=0, par=0, Mpar=0, n=strlen(X), f=0, j;
-    char p[100];
+   
     while(i<n)
     {
         if(((X[i]>=65 && X[i]<=90) || X[i]>=97 && X[i]<=122) && ((X[i+1]>=65 && X[i+1]<=90) || X[i+1]>=97 && X[i+1]<=122)) 
@@ -87,7 +89,7 @@ int contar_espacos(char X[])
 
 int main() 
 {
-    char X[80], freq[10];
+    char X[300], freq[20];
     int tem_pares;
     while(strcmp(X, "nao quero mais"))
     {
