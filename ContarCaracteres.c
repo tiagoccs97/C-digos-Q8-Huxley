@@ -35,7 +35,7 @@ void converter(char X[])
 
 int contar_pares(char X[], char freq[])
 {
-    int i=0, par, Mpar=0, n=strlen(X), f=0, j;
+    int i=0, par=0, Mpar=0, n=strlen(X), f=0, j;
     char p[100];
     while(i<n)
     {
@@ -45,12 +45,13 @@ int contar_pares(char X[], char freq[])
         }
         else i++;
     }
+    
     for(i=f-1; i>=0; i-=2)
     {
-        par=0;
+        if(p[i] && p[i-1]) par++;
         for(j=i-2; j>=0; j-=2)
         {
-            if((p[i]==p[j] && p[i-1]==p[j-1]) || p[0] && p[1]) par++;
+            if((p[i]==p[j] && p[i-1]==p[j-1])) par++;
             
         }
         if(par>Mpar)
@@ -59,6 +60,7 @@ int contar_pares(char X[], char freq[])
             freq[1]=p[i];
             freq[0]=p[i-1];
         }
+        par=0;
     }
     return Mpar;
 }
