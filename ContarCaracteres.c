@@ -29,10 +29,9 @@ int contar_pares(char X[], char freq[])
     char p[100];
     while(i<n)
     {
-        if((X[i]>=65 && X[i]<=90) || X[i]>=97 && X[i]<=122) {p[f]=X[i]; f++; i+=2;}
-        else i++;
+        if((X[i]>=65 && X[i]<=90) || X[i]>=97 && X[i]<=122) {p[f]=X[i]; f++;}
+        i++;
     }
-    printf("%s", p);
     for(i=f-1; i>=0; i-=2)
     {
         par=0;
@@ -48,7 +47,7 @@ int contar_pares(char X[], char freq[])
             freq[0]=p[i-1];
         }
     }
-    return Mpar;
+    return Mpar+1;
 }
 
 int contar_a(char X[])
@@ -73,21 +72,21 @@ int contar_espacos(char X[])
 
 int main() 
 {
-    char X[80], freq[2];
-    /*while(strcmp(X, "NAO QUERO MAIS"))
-    {*/
+    char X[80], freq[10];
+    while(strcmp(X, "NAO QUERO MAIS"))
+    {
         scanf("%[^\n]s", X);
         getchar();
-        puts(X);
         printf("%d\n", contar_espacos(X));
         printf("%d\n", contar_a(X));
-        /*if(contar_pares(X, freq))
-        {*/
+        if(contar_pares(X, freq))
+        {
             converter(X);
-            printf("%d\n%s\n", contar_pares(X, freq), X);
-        /*}
+            printf("%d\n", contar_pares(X, freq));
+            printf("%c%c\n", freq[0], freq[1]);
+        }
         
-    }*/
+    }
     
 	return 0;
 }
