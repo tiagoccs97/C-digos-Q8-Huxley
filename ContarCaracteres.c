@@ -3,6 +3,16 @@
 #include <math.h>
 #include <stdlib.h>
 
+int letras(char X[])
+{
+     int i, n=strlen(X);
+     for(i=0; i<n; i++)
+     {
+         if((X[i]>=65 && X[i]<=90) || X[i]>=97 && X[i]<=122) return 1; 
+     }
+     return 0;
+}
+
 int str_tam(char X[])
 {
     int tam=0;
@@ -29,15 +39,18 @@ int contar_pares(char X[], char freq[])
     char p[100];
     while(i<n)
     {
-        if((X[i]>=65 && X[i]<=90) || X[i]>=97 && X[i]<=122) {p[f]=X[i]; f++;}
-        i++;
+        if(((X[i]>=65 && X[i]<=90) || X[i]>=97 && X[i]<=122) && ((X[i+1]>=65 && X[i+1]<=90) || X[i+1]>=97 && X[i+1]<=122)) 
+        {
+            p[f]=X[i]; p[f+1]=X[i+1]; f+=2; i+=2;
+        }
+        else i++;
     }
     for(i=f-1; i>=0; i-=2)
     {
         par=0;
         for(j=i-2; j>=0; j-=2)
         {
-            if(p[i]==p[j] && p[i-1]==p[j-1]) par++;
+            if((p[i]==p[j] && p[i-1]==p[j-1]) || p[0] && p[1]) par++;
             
         }
         if(par>Mpar)
@@ -47,7 +60,7 @@ int contar_pares(char X[], char freq[])
             freq[0]=p[i-1];
         }
     }
-    return Mpar+1;
+    return Mpar;
 }
 
 int contar_a(char X[])
@@ -73,18 +86,26 @@ int contar_espacos(char X[])
 int main() 
 {
     char X[80], freq[10];
-    while(strcmp(X, "NAO QUERO MAIS"))
+    int tem_pares;
+    while(strcmp(X, "nao quero mais"))
     {
         scanf("%[^\n]s", X);
         getchar();
-        printf("%d\n", contar_espacos(X));
-        printf("%d\n", contar_a(X));
-        if(contar_pares(X, freq))
+        converter(X);
+        if(strcmp(X, "nao quero mais"))
         {
-            converter(X);
-            printf("%d\n", contar_pares(X, freq));
-            printf("%c%c\n", freq[0], freq[1]);
+            
+            printf("%d\n", contar_espacos(X));
+            printf("%d\n", contar_a(X));
+            tem_pares = contar_pares(X, freq);
+            if(tem_pares)
+            {
+                printf("%d\n", tem_pares);
+                printf("%c%c\n", freq[0], freq[1]);
+            }
+            else printf("NENHUM PAR\n");
         }
+        
         
     }
     
